@@ -17,6 +17,13 @@ class CategoryTestCase(TestCase):
     def test_is_instance_of_category(self):
         self.assertIsInstance(self.category_object, Category)
 
+    def test_category_name_exists(self):
+        name_field = Category.objects.get(name='test_category')
+        self.assertEqual('test_category', name_field.name)
+
+    def test_category_name_does_not_exist(self):
+        self.assertRaises(Category.DoesNotExist, Category.objects.get, name__exact='fish')
+
 
 class BookTestCase(TestCase):
     """test for instance of book"""
@@ -28,6 +35,27 @@ class BookTestCase(TestCase):
     # create instance
     def test_is_instance_of_book(self):
         self.assertIsInstance(self.book_object, Book)
+
+    def test_book_title_exist(self):
+        title_field = Book.objects.get(title='test_title')
+        self.assertEqual('test_title', title_field.title)
+
+    def test_book_title_does_not_exist(self):
+        self.assertRaises(Book.DoesNotExist, Book.objects.get, title__exact='dress')
+
+    def test_book_author(self):
+        author_field = Book.objects.get(author='test_author')
+        self.assertEqual('test_author', author_field.author)
+
+    def test_book_author_does_not_exist(self):
+        self.assertRaises(Book.DoesNotExist, Book.objects.get, author__exact='noauthor')
+
+    def test_category_author(self):
+        category_field = Book.objects.get(category__name='test_category')
+        self.assertEqual('test_category', category_field.category.name)
+
+    def test_book_category_does_not_exist(self):
+        self.assertRaises(Book.DoesNotExist, Book.objects.get, category__name__exact='nocategory')
 
 
 class HomeViewTestCase(TestCase):
