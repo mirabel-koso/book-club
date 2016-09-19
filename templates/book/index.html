@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+<h2><a href="{% url 'home_view' %}">Welcome To Book Club</a></h2>
+    <form method="get" action=".">
+        <input type="text" name="book_name" id="book_name" list="book_name" placeholder="Search By Book names Or Category names" class="validate" required="">
+        <datalist id="book_name">
+            <option value=""></option>
+        </datalist>
+        <input type="submit" name="" value="SEARCH" class="btn btn-success">
+    </form>
+    <ul>
+        <li></li>
+    </ul>
+</div>
+{% endblock %}
