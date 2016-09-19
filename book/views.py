@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.db.models import Q
 
-from models import Book, Category
+from models import Book
 
 # Create your views here.
 
@@ -13,10 +13,9 @@ class ListAllBooks(TemplateView):
 
     def get(self, request):
         context = {}
-        context['categories'] = Category.objects.all()
         search_query = request.GET.get('book_name', '')
         context['books'] = self.filter_search(search_query, context)
-        return self.render_to_response(context)
+        return render(request, self.template_name, context)
 
     @staticmethod
     def filter_search(search_query, context):
