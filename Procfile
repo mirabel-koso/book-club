@@ -1,1 +1,1 @@
-web: gunicorn book:app
+web: gunicorn mirabel-book-club-app:app
