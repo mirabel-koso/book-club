@@ -11,6 +11,18 @@ class ListAllBooks(TemplateView):
 
     template_name = 'index.html'
 
+    def get(self, request):
+        context = {}
+        context['categories'] = Category.objects.all()
+        search_query = request.GET.get('book_name', '')
+        context['books'] = self.filter_search(search_query, context)
+        return self.render_to_response(context)
+
     @staticmethod
     def filter_search(search_query, context):
-        pass
+        filter_query = Q(title__icontains=search_query) | Q(category__name__icontains=search_query)
+        if search_query:
+            context['books'] = Book.objects.filter(filter_query)
+        else:
+            context['books'] = Book.objects.all()
+        return context['books']
