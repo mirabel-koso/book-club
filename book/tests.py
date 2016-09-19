@@ -47,10 +47,11 @@ class HomeViewTestCase(TestCase):
 
     # search_not_in_book_object
     def test_search_not_in_book_object(self):
-        search_result = ListAllBooks.filter_search('abc', self.context)
+        result = ListAllBooks.filter_search('dress', self.context)
+        search_result = [title for title in result]
         self.assertEqual([], search_result)
 
     # search_in_book_object
     def test_search_in_book_object(self):
         search_result = ListAllBooks.filter_search('test_title', self.context)
-        self.assertEqual(['test_title'], search_result)
+        self.assertEqual(['test_title'], [search_result.first().title])
