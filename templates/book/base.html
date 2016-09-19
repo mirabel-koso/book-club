@@ -2,7 +2,7 @@
 <html>
   <head>
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="{% static 'materialize/bin/materialize.css' %}"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" media="screen,projection">
   </head>
   <body>
     {% block content %}
@@ -10,7 +10,7 @@
     <!--Import jQuery before materialize.js-->
     {% block footer %}
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="{% static 'materialize/bin/materialize.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
     {% endblock %}
 
   </body>
