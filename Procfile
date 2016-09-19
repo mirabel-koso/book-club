@@ -1,1 +1,1 @@
-web: gunicorn mirabel-book-club-app:app
+web: gunicorn book_club.wsgi --log-file -
